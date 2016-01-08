@@ -1,0 +1,76 @@
+
+/*
+      For Contacts Page 
+*/
+.item .icon .icon-badge {
+  position: absolute;
+  top: 3px;
+  right: 0px;
+  font-size: 8px;
+}
+
+@font-face {
+  font-family: 'edelsans';
+  src: url(../lib/fonts/edelsans/edelsans_regular.otf);
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'edelsans_light';
+  src: url(../lib/fonts/edelsans/edelsans_ultralight.otf);
+}
+html {
+  height: 100%;
+}
+body {
+  background: url(../img/bg.png);
+  margin: 0;
+  font-family: edelsans, Arial, sans-serif;
+  font-size: 14px;
+  color: #ffffff;
+  width: 100%;
+  height: 100%;
+}
+.header-nav{
+  width: 100%;
+  height: 120px;
+  background: #748e96;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.5);
+}
+.wrapper{
+  background: url(../img/bg.png);
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.screen-name{
+  float: left;
+  font-size: 28pt;
+  margin: 55px 0px 55px 25px;
+  letter-spacing: 1px;
+}
+.content{
+  padding: 30px;
+}
+.nav-icon-left{
+  float: left;
+  padding: 10px;
+}
+.dash-row-1{
+  width: 49.7%;
+  height: auto;
+  float: left;
+  padding-right: 0.3%;
+  padding-bottom: 30px;
+}
+.dash-row-2{
+  width: 50%;
+  height: auto;
+  float: left;
+  padding-bottom: 30px;
+}
+.dash-menu-icon{
+  float: left;
+  width: 100%;
+  padding: 1px;
+}

@@ -1,0 +1,37 @@
+<ion-view view-title="Messages">
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<ion-content class="wrapper" scroll="false" >
+ 
+<div class="container">
+
+<h4>Online Users</h4>
+<ul>
+  <li ng-repeat="user in users">{{user}}</li>
+</ul>
+
+<br />
+
+<h4>Chat History ({{messages.length}})</h4>
+
+<form ng-submit='publish()'>
+  <input type="text" ng-model='newMessage' />
+  <input type="submit" value="Send" />
+</form>
+
+<br />
+
+<div class="well">
+<ul>
+<li ng-repeat="message in messages">{{message}}</li>
+</ul>
+</div>
+
+</div>
+
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,48 @@
+<ion-view hide-nav-bar="true">  
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<ion-modal-view class="body" onload="javascript:clearData();">
+<script language="javascript">
+    function clearData(){
+      document.getElementById('registerForm').reset();
+    }
+  </script>
+
+<ion-content class="wrapper" scroll="false">
+
+<div class="wrapper" scroll="false" >
+  <form ng-submit="doLogin()" name ="registerForm" novalidate>
+  <div class="header-nav">
+    <img class="nav-icon-left" src="img/register/logo.png">
+    <p class="screen-name">CSI 2016</p>
+  </div>
+
+  <div class="content">
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+   <label class="item item-input">
+          <input type="text" id="username" placeholder="Name " ng-model="loginData.username" required/>
+   </label>
+   
+   <label class="item item-input">
+           <input type="number" id="mobilenumber" placeholder='Mobile Number' required ng-model="loginData.mobilenumber" ng-maxlength="10"/> 
+   </label>
+
+   <label class="item item-input">
+           <input type="text" id="registernumber" placeholder='Registration Number' ng-model="loginData.registerNo" required ng-minlength="1"/> 
+   </label>
+      <label class="item">
+          <button class="button button-block button-positive" type="submit" ng-disabled="registerForm.$invalid">Register</button>
+   </label>
+  </div>
+ </form>
+  </div>
+ 
+</ion-content>
+</ion-modal-view>

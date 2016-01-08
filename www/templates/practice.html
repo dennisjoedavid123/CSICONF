@@ -1,0 +1,71 @@
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--<ion-modal-view class="body">-->
+<!--   <ion-header-bar>
+    <img src="../img/register/logo.png"/> 
+    <h1 class="title">Registration</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>
+ --> 
+ <!--  <ion-content>  <meta name="viewport" content="width=device-width, initial-scale=1">
+ -->
+    
+   <!--    <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Name</span>
+          <input type="text" ng-model="loginData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Mobile Number</span>
+          <input type="password" ng-model="loginData.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Register</button>
+        </label>
+      </div> -->
+
+<div class="wrapper">
+  <form ng-submit="doLogin()">
+  <div class="header-nav">
+    <img class="nav-icon-left" src="img/register/logo.png">
+    <p class="screen-name">Practise</p>
+  </div>
+
+  <div class="content">
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+   <label class="item item-input">
+         <!-- <input type="text" placeholder="Enter the OTP" ng-model="loginData.otpToken"/> -->
+          <dropdown placeholder="Practice" list="practices" selected="practice" property="name"></dropdown>
+   </label>
+   
+   <label class="item">
+          <button class="button button-block button-positive" type="submit">Proceed</button>
+   </label>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+<br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
+  </div>
+ </form>
+  </div>
+ 
+   <!--  </ion-content> -->
+<!--</ion-modal-view> -->

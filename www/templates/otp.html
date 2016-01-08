@@ -1,0 +1,36 @@
+<ion-view hide-nav-bar="true"   hide-back-button="true">
+
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<ion-content class="wrapper" scroll="false" >
+<div class="wrapper">
+  <form ng-submit="otpAuth()" name="otpForm">
+  <div class="header-nav">
+    <img class="nav-icon-left" src="img/register/logo.png">
+    <p class="screen-name">OTP</p>
+  </div>
+
+  <div class="content">
+  
+  <br>
+  <br>
+  <br>
+  <br>
+  
+   <label class="item item-input">
+          <input type="number" id="otpToken" placeholder="Enter the OTP" ng-model="loginData.otpToken" required ng-maxlength="4" />
+   </label>
+   
+   <label class="item">
+          <button class="button button-block button-positive" ng-disabled="otpForm.$invalid" type="submit">Proceed</button>
+   </label>
+  
+  </div>
+ </form>
+  </div>
+ 
+  </ion-content>
+<!--</ion-modal-view> -->
