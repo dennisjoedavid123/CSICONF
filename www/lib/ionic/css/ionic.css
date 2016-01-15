@@ -5344,8 +5344,8 @@ a.item-content {
     border-bottom: 0; }
 
 .padding .card, .padding .list-inset {
-  margin-left: 0;
-  margin-right: 0; }
+  margin-left: 10;
+  margin-right: 10; }
 
 .card .item:first-child, .list-inset .item:first-child, .padding > .list .item:first-child {
   border-top-left-radius: 2px;

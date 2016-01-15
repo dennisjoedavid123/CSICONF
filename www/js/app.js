@@ -2,7 +2,7 @@
 
 /** Sample Code To test SQL Lite Integration **/
 
-//  var db = null;
+ var db = null;
 
 // var example = angular.module('starter', ['ionic', 'ngCordova'])
 //     .run(function($ionicPlatform, $cordovaSQLite) {
@@ -22,10 +22,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 
-angular.module('starter', ['ionic', 'starter.controllers'])
-.run(function($ionicPlatform) {
+angular.module('starter', ['ionic','starter.controllers','starter.services','ngCordova','jett.ionic.filter.bar'])
+.run(function($ionicPlatform,$cordovaSQLite) {
 
   $ionicPlatform.ready(function() {
+
     ionic.Platform.fullScreen(true, true);
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -38,8 +39,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       StatusBar.styleDefault();
     }
  
-    //db = $cordovaSQLite.openDB({name:"my.db"});
+   /*window.plugins.sqlDB.copy("csiapp.db", function() {
+            db = $cordovaSQLite.openDB("csiapp.db");
+        }, function(error) {
+            console.error("There was an error copying the database: " + error);
+            db = $cordovaSQLite.openDB("csiapp.db");
+        });
+*/
+   // db = $cordovaSQLite.openDB({name:"../db/csiapp.db"});
+//     db = window.sqlitePlugin.openDatabase({name: "../db/csiapp.db", location: 1});
     //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+  // $cordovaSQLite.execute(db, "select * from helpinfo");
 
   });
 
@@ -66,15 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: '/search',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html'
-      }
-    }
-  })
-
+  
   .state('app.browse', {
       url: '/browse',
       views: {
@@ -145,7 +147,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  .state('app.session', {
+  .state('app.aroundyou', {
+    url: '/aroundyou',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/aroundyou.html',
+        controller:'MapCtrl'
+      }
+    }
+  }) 
+ .state('app.help', {
+    url: '/help',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/help.html',
+        controller:'HelpCtrl'
+      }
+    }
+  }) 
+
+   .state('app.session', {
     url: '/session',
     views: {
       'menuContent': {
@@ -155,7 +176,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
   .state('tab', {
-    url: "/tab",
     abstract: true,
     templateUrl: function() {
         if (ionic.Platform.isAndroid()) {
@@ -173,8 +193,37 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
- ;
+  
+  .state('app.search', {
+    url: '/search',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/employee-list.html',
+                controller: 'EmployeeListCtrl'
+      }
+    }
+  })
+
+.state('app.employee', {
+    url: '/employees/:employeeId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/employee-detail.html',
+                controller: 'EmployeeDetailCtrl'
+      }
+    }
+  })
+.state('app.reports', {
+    url: '/employees/:employeeId/reports',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/employee-reports.html',
+                controller: 'EmployeeReportsCtrl'
+      }
+    }
+  })
  
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/login');
 }

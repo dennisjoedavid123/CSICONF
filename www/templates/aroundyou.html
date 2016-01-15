@@ -1,5 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <ion-view view-title="Around You">
-  <ion-content>
-    <h1>Around You</h1>
-  </ion-content>
-</ion-view>
+
+<ion-content>
+    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+ </ion-view>
+
+
+<ion-view view-title="Around You ">
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+ <ion-tabs class="tabs-stable tabs-icon-top " >
+    
+            <ion-tab title="Around Chennai" icon="ion-ios-location-outline" ui-sref="tab.day">
+                <ion-nav-view name="day">
+                         <ion-content class="padding">
+                          <!--      <div id="map" data-tap-disabled="true" style=" width: 100%;height: 100%;"></div> -->
+                         <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"width="100%" height="100%" src="https://maps.google.com/maps?hl=en&q=Trade Center , Chennai&ie=UTF8&t=roadmap&z=6&iwloc=B&output=embed"><div><small><a href="http://embedgooglemaps.com">
+                                    embedgooglemaps.com
+                            </a></small></div><div><small><a href="https://www.premiumlinkgenerator.com/">premium link generator </a></small></div></iframe>
+                         </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Around Center" icon="ion-android-map" ui-sref="tab.keynote" >
+                <ion-nav-view name="keynote">
+                         <ion-content class="padding">
+                            <!--  <embed src="../files/NewHall.pdf" width="800px" height="2100px"> -->
+                            <iframe src="http://docs.google.com/gview?url=http://www.chennaitradecentre.org/Pdf/NewHall.pdf&embedded=true" style="width:100%; height:100%;" frameborder="0"></iframe>
+                         </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+ </ion-tabs>     

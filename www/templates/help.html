@@ -1,0 +1,27 @@
+<ion-view view-title="Help">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <ion-tabs class="tabs-stable tabs-icon-top " >
+     <ion-tab title="Accomodation" icon="ion-ios-home-outline" ui-sref="tab.keynote" >
+                <ion-nav-view name="keynote">
+                         <ion-content class="padding">
+                               <button class="button" ng-click="select()">Select All</button>
+                               <button class="button" ng-click="insert('DAY5')">Insert</button>
+                         </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Moving Around" icon="ion-android-car" ui-sref="tab.day">
+                <ion-nav-view name="day">
+                         <ion-content class="padding">
+                              <h1>Dash 1</h1>
+                         </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Conference Info" icon="ion-ionic" ui-sref="tab.practice">
+                <ion-nav-view name="practice">
+           <ion-content class="padding">
+                              <h1>Dash 2</h1>
+                         </ion-content>
+           </ion-nav-view>
+        </ion-tab>
+ </ion-tabs>     

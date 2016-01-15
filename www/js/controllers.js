@@ -1,4 +1,29 @@
-angular.module('starter.controllers', [])
+var db = null;
+
+angular.module('starter.controllers', ['ionic','ngCordova'])
+
+.run(function($ionicPlatform, $cordovaSQLite) {
+        $ionicPlatform.ready(function() {
+            if(window.cordova && window.cordova.plugins.Keyboard) {
+                cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+            }
+            if(window.StatusBar) {
+                StatusBar.styleDefault();
+            }
+          
+          window.plugins.sqlDB.copy("csiapp.db", function() {
+            
+            db = $cordovaSQLite.openDB("csiapp.db");
+
+        }, function(error) {
+            console.error("There was an error copying the database: " + error);
+            db = $cordovaSQLite.openDB("csiapp.db");
+        });
+          
+            //$cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS people (id integer primary key, firstname text, lastname text)");
+
+        });
+    })
 
 .controller('AppCtrl', function($scope,$rootScope,$location,$ionicModal, $timeout,$http) {
 
@@ -64,10 +89,8 @@ $http.post(url)
     // Request for OTP - Ends 
     $rootScope.otpToken  = otpToken;
   
-   $location.path('/app/otp');  
+    $location.path('/app/otp');  
   
- 
- 
     // Simulate a login delay. Remove this and replace with your login
     // code if using a login system
     $timeout(function() {
@@ -99,25 +122,11 @@ $http.post(url)
           $location.path('/app/dashboard');
 }
    else{
-      $location.path('/app/login');
-         $rootScope.otpToken = '';
-          $scope.loginData.otpToken ='';
+      $location.path('/app/dashboard'); // change it later
+         //$rootScope.otpToken = '';
+          $scope.loginData.ErrorMsg ='';
    }
     
-
-
-   
-   //console.log('Location'+$location.path());
-
-   //Create the otp modal that we will use later
-  // $ionicModal.fromTemplateUrl('templates/dashboard.html', {
-  //   scope: $scope
-  // }).then(function(modal) {
-  //   $scope.modal = modal;
-  // });
-
-  // $scope.modal.show();
-
   };
 
 })
@@ -134,19 +143,89 @@ $http.post(url)
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
-
 .controller('PracticeCtrl', function($scope, $stateParams) {
  $scope.practices = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
     { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
+    { title: 'Rap', id: 5 },                  
     { title: 'Cowbell', id: 6 }
   ];
 })
 .controller('MessageCtrl', function($scope, $stateParams) {
 })
+
+.controller("HelpCtrl", function($scope,$cordovaSQLite) {
+
+    $scope.select = function() {
+     
+        var query = "SELECT day_title from csi_day";
+        console.log("The Query is >>>"+query);
+        
+        $cordovaSQLite.execute(db, query).then(function(res) {
+            if(res.rows.length > 0) {
+          //console.log("SELECTED -> " + res.rows.item(0).name + " " + res.rows.item(0).company);
+              console.log("SELECTED -> " + res.rows.item(0).day_title );
+            } else {
+                console.log("No results found");
+            }
+        }, function (err) {
+            console.error(err);
+        });
+    }
+
+     $scope.insert = function(firstname, lastname) {
+        var query = "INSERT INTO csi_day (day_title) VALUES (?)";
+        $cordovaSQLite.execute(db, query, [day_title]).then(function(res) {
+            console.log("INSERT ID -> " + res.insertId);
+        }, function (err) {
+            console.error(err);
+        })
+    }
+  
+})
+// .controller('MapCtrl', function($scope,$state, $cordovaGeolocation) {
+//    var options = {timeout: 10000, enableHighAccuracy: true};
+ 
+//   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+    
+//     var latLng = new google.maps.LatLng(13.060416, 80.249634);
+ 
+//     var mapOptions = {
+//       center: latLng,
+//       zoom: 12,
+//       mapTypeId: google.maps.MapTypeId.ROADMAP
+//     };
+//     console.log(document.getElementById("map"));
+
+//     $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  
+
+//   }, function(error){
+//     console.log("Could not get location");
+//   });
+//     })
+
+.controller('MapCtrl',function($scope){
+  
+     // google.maps.event.addDomListener(window,"load",function(){
+            
+     //    var latLng = new google.maps.LatLng(13.060416, 80.249634);
+        
+     //    var mapOptions = {
+     //      center: latLng,
+     //      zoom: 12,
+     //      mapTypeId: google.maps.MapTypeId.ROADMAP
+     //     };
+     
+     //   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        
+     //    $scope.map = map;
+     // });
+
+})
+
 
 // .controller('SQLQueryController',function($scope,$cordovaSQLLite)){
 
@@ -174,6 +253,34 @@ $http.post(url)
  
 
 // })
+
+
+ .controller('EmployeeListCtrl', function ($scope, Employees) {
+       console.log("Inside >>>>>>.......");
+        $scope.searchKey = "";
+
+        $scope.clearSearch = function () {
+            $scope.searchKey = "";
+            $scope.employees = Employees.query();
+        }
+
+        $scope.search = function () {
+            $scope.employees = Employees.query({name: $scope.searchKey});
+        }
+
+        $scope.employees = Employees.query();
+    })
+
+    .controller('EmployeeDetailCtrl', function($scope, $stateParams, Employees) {
+        console.log('details >>>>');
+        $scope.employee = Employees.get({employeeId: $stateParams.employeeId});
+    })
+
+    .controller('EmployeeReportsCtrl', function ($scope, $stateParams, Employees) {
+        console.log('reports');
+        $scope.employee = Employees.get({employeeId: $stateParams.employeeId, data: 'reports'});
+    })
+
 
 .controller('ContactsCtrl', function($scope) {
   
@@ -253,6 +360,3 @@ $http.post(url)
   
 }
 );
-
-
-;
